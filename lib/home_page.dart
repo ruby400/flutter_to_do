@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -24,35 +26,39 @@ class _HomePageState extends State<HomePage> {
             bottom: MediaQuery.of(context).viewInsets.bottom + 20,
             left: 20,
             right: 20,
-            top: 20,
+            top: 250,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '새 메모 추가',
+                '할일',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               TextField(
                 controller: controller,
                 decoration: InputDecoration(hintText: '할 일을 입력하세요'),
               ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  String text = controller.text.trim();
-                  if (text.isNotEmpty) {
-                    setState(() {
-                      todoList.add(text);
-                      isCheckedList.add(false); // 동기화 유지
-                    });
-                    Navigator.of(context).pop();
-                  }
-                },
-                child: Text('추가'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF6A5ACD),
-                  foregroundColor: Colors.white,
+              SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: () {
+                    String text = controller.text.trim();
+                    if (text.isNotEmpty) {
+                      setState(() {
+                        todoList.add(text);
+                        isCheckedList.add(false); // 동기화 유지
+                      });
+                      Navigator.of(context).pop();
+                    }
+                  },
+
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 0, 0, 1),
+                    foregroundColor: Colors.white,
+                  ),
+                  child: Text('저장'),
                 ),
               ),
             ],
@@ -105,11 +111,12 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).pop();
                   }
                 },
-                child: Text('저장'),
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF6A5ACD),
                   foregroundColor: Colors.white,
                 ),
+                child: Text('저장'),
               ),
             ],
           ),
@@ -204,11 +211,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddTodoSheet,
-        child: Icon(Icons.add),
         backgroundColor: Color(0xFF6A5ACD),
         shape: CircleBorder(),
         tooltip: '새 메모 추가',
+        child: Icon(Icons.add),
       ),
     );
-  }
+  } //ㅇㅏㄴㄴㅕㅇ
 }
